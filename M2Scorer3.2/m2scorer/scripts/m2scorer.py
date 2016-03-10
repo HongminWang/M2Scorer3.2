@@ -36,7 +36,8 @@ from getopt import getopt
 from util import paragraphs
 from util import smart_open
 
-
+# To record time
+import time
 
 def load_annotation(gold_file):
     source_sentences = []
@@ -135,6 +136,11 @@ system_sentences = [line.decode("utf8").strip() for line in fin.readlines()]
 fin.close()
 
 p, r, f1 = levenshtein.batch_multi_pre_rec_f1(system_sentences, source_sentences, gold_edits, max_unchanged_words, beta, ignore_whitespace_casing, verbose, very_verbose)
+
+end = time.time()
+h, rem = divmod(end-start, 3600)
+m, sec = divmod(rem, 60)
+print >> sys.stderr, " Time: %dhours %dmins %sseconds " %(h,m,sec)
 
 print "Precision   : %.4f" % p
 print "Recall      : %.4f" % r
