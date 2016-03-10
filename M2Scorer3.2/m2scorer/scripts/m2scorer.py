@@ -95,7 +95,8 @@ def print_usage():
     print >> sys.stderr, "        --beta B                    -  Beta value for F-measure. Default 0.5."
     print >> sys.stderr, "        --ignore_whitespace_casing  -  Ignore edits that only affect whitespace and caseing. Default no."
 
-
+#To record time
+start = time.time()
 
 max_unchanged_words=2
 beta = 0.5
