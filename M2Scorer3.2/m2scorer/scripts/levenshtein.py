@@ -786,8 +786,8 @@ def merge_graph(V1, V2, E1, E2, dist1, dist2, edits1, edits2):
     # distances
     dist = deepcopy(dist1)
     for k in dist2.keys():
-        # if k not in dist:
-        if k not in dist.keys():
+        if k not in dist:
+        # if k not in dist.keys():
             dist[k] = dist2[k]
         else:
             if dist[k] != dist2[k]:
@@ -797,8 +797,8 @@ def merge_graph(V1, V2, E1, E2, dist1, dist2, edits1, edits2):
     # edit contents
     edits = deepcopy(edits1)
     for e in edits2.keys():
-        # if e not in edits:
-        if e not in edits.keys():
+        if e not in edits:
+        # if e not in edits.keys():
             edits[e] = edits2[e]
         else:
             if edits[e] != edits2[e]:
