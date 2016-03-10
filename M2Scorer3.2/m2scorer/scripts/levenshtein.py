@@ -768,19 +768,34 @@ def edit_graph(levi_matrix, backpointers):
 # merge two lattices, vertices, edges, and distance and edit table
 def merge_graph(V1, V2, E1, E2, dist1, dist2, edits1, edits2):
     # vertices
-    V = deepcopy(V1)
-    for v in V2:
-        if v not in V:
-            V.append(v)
+
+    # V = deepcopy(V1)
+
+    V1set = set(V1)
+    V2set = set(V2)
+    Vunion = set.union(V1set, V2set)
+    V = list(Vunion)
+
+    # for v in V2:
+    #     if v not in V:
+    #         V.append(v)
+
     V = sorted(V)
 
     # edges
-    E = deepcopy(E1)
+    # E = deepcopy(E1)
+
+    E1set = set(E1)
+    E2set = set(E2)
+    Eunion = set.union(E1set, E2set)
+    E = list(Eunion)
+    
     # E = E1
-    for e in E2:
-        if e not in E:
-        # if e not in V:
-            E.append(e)
+    # for e in E2:
+    #     if e not in E:
+    #     # if e not in V:
+    #         E.append(e)
+    
     E = sorted(E)
 
     # distances

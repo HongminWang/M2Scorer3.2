@@ -1,0 +1,59 @@
+==> logs_commit1/logAMU_commit1.out <==
+Precision   : 0.4162
+Recall      : 0.2140
+F_0.5       : 0.3501
+
+==> logs_commit1/logCAMB_commit1.out <==
+Precision   : 0.3971
+Recall      : 0.3010
+F_0.5       : 0.3733
+
+==> logs_commit1/logCUUI_commit1.out <==
+Precision   : 0.4178
+Recall      : 0.2488
+F_0.5       : 0.3679
+
+==> logs_commit1/logIITB_commit1.out <==
+Precision   : 0.3077
+Recall      : 0.0139
+F_0.5       : 0.0590
+
+==> logs_commit1/logIPN_commit1.out <==
+Precision   : 0.1128
+Recall      : 0.0285
+F_0.5       : 0.0709
+
+==> logs_commit1/logNTHU_commit1.out <==
+Precision   : 0.3508
+Recall      : 0.1885
+F_0.5       : 0.2992
+
+==> logs_commit1/logPKU_commit1.out <==
+Precision   : 0.3221
+Recall      : 0.1365
+F_0.5       : 0.2532
+
+==> logs_commit1/logPOST_commit1.out <==
+Precision   : 0.3451
+Recall      : 0.2173
+F_0.5       : 0.3088
+
+==> logs_commit1/logRAC_commit1.out <==
+Precision   : 0.3314
+Recall      : 0.1499
+F_0.5       : 0.2668
+
+==> logs_commit1/logSJTU_commit1.out <==
+Precision   : 0.3011
+Recall      : 0.0510
+F_0.5       : 0.1519
+
+==> logs_commit1/logUFC_commit1.out <==
+Precision   : 0.7000
+Recall      : 0.0172
+F_0.5       : 0.0784
+
+==> logs_commit1/logUMC_commit1.out <==
+Precision   : 0.3127
+Recall      : 0.1446
+F_0.5       : 0.2537
