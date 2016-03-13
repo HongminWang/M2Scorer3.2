@@ -746,12 +746,21 @@ def edit_graph(levi_matrix, backpointers):
     # breath-first search through the matrix
     v_start = (len(levi_matrix)-1, len(levi_matrix[0])-1)
     queue = [v_start]
+
+    V_dict = dict()
+    Q_dict = dict()
+
     while len(queue) > 0:
         v = queue[0]
+        Q_dict[v] = False # added
         queue = queue[1:]
-        if v in V:
+    
+        # if v in V:
+        if v in V_dict: # added
             continue
-        V.append(v)
+        V.append(v) 
+        V_dict[v] = True # added
+
         try:
             for vnext_edits in backpointers[v]:
                 vnext = vnext_edits[0]
@@ -759,8 +768,11 @@ def edit_graph(levi_matrix, backpointers):
                 E.append((vnext, v))
                 dist[(vnext, v)] = 1
                 edits[(vnext, v)] = edit_next
-                if not vnext in queue:
+        
+                if v not in Q_dict or Q_dict[v] == False: # added
+                # if not vnext in queue:
                     queue.append(vnext)
+                    Q_dict[vnext] = True # added
         except KeyError:
             pass
     return (V, E, dist, edits)
