@@ -99,6 +99,32 @@ def f1_suffstats(candidate, source, gold_edits, max_unchanged_words=2, ignore_wh
         print "-------------------------------------------"
     return (stat_correct, stat_proposed, stat_gold)
 
+def make_graph(E,very_verbose):
+
+    if very_verbose:
+        print " $$$$$$ In make_graph E = ", E
+
+    G = dict()
+
+    for e in E:
+        try:
+            G[e[0]][0].append(e[1])
+        except KeyError:
+            G[e[0]] = ([],[])
+            G[e[0]][0].append(e[1])
+        
+        try:
+            G[e[1]][1].append(e[0])
+        except KeyError:
+            G[e[1]] = ([],[])
+            G[e[1]][1].append(e[0])
+
+
+    if very_verbose:
+        print " $$$$$ G = ", G
+
+    return G
+
 def batch_multi_pre_rec_f1(candidates, sources, gold_edits, max_unchanged_words=2, beta=0.5, ignore_whitespace_casing= False, verbose=False, very_verbose=False):
     assert len(candidates) == len(sources) == len(gold_edits)
     stat_correct = 0.0
@@ -125,7 +151,10 @@ def batch_multi_pre_rec_f1(candidates, sources, gold_edits, max_unchanged_words=
             print "backpointers 1:", backpointers1
             print "backpointers 2:", backpointers2
             print "edits (w/o transitive arcs):", edits
-        V, E, dist, edits = transitive_arcs(V, E, dist, edits, max_unchanged_words, very_verbose)
+
+        G = make_graph(E,very_verbose)
+
+        V, E, dist, edits = transitive_arcs(V, E, G, dist, edits, max_unchanged_words, very_verbose)
         
         # Find measures maximizing current cumulative F1; local: curent annotator only
         sqbeta = beta * beta
@@ -646,7 +675,7 @@ def set_weights(E, dist, edits, gold_edits, verbose=False, very_verbose=False):
     return retdist
 
 # add transitive arcs
-def transitive_arcs(V, E, dist, edits, max_unchanged_words=2, very_verbose=False):
+def transitive_arcs(V, E, G, dist, edits, max_unchanged_words=2, very_verbose=False):
     if very_verbose:
         print "-- Add transitive arcs --"
     for k in range(len(V)):
@@ -654,16 +683,19 @@ def transitive_arcs(V, E, dist, edits, max_unchanged_words=2, very_verbose=False
         if very_verbose:
             print "v _k :", vk
 
-        for i in range(len(V)):
-            vi = V[i]
+        for vi in G[vk][1]:
+        # for i in range(len(V)):
+            # vi = V[i]
             if very_verbose:
                 print "v _i :", vi
             try:
                 eik = edits[(vi, vk)]
             except KeyError:
                 continue
-            for j in range(len(V)):
-                vj = V[j]
+
+            for vj in G[vk][0]:
+            # for j in range(len(V)):
+                # vj = V[j]
                 if very_verbose:
                     print "v _j :", vj
                 try:
@@ -680,6 +712,9 @@ def transitive_arcs(V, E, dist, edits, max_unchanged_words=2, very_verbose=False
                         E.append((vi, vj))
                         dist[(vi, vj)] = dik + dkj
                         edits[(vi, vj)] = eij
+                        G[vi][0].append(vj)
+                        G[vj][1].append(vi)
+                        
     # remove noop transitive arcs 
     if very_verbose:
         print "-- Remove transitive noop arcs --"
