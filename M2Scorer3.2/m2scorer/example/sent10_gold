@@ -1,0 +1,7 @@
+S When we are diagonosed out with certain genetic disease , are we suppose to disclose this result to our relatives ?
+A 3 4|||Mec|||diagnosed|||REQUIRED|||-NONE-|||0
+A 4 5|||Prep||||||REQUIRED|||-NONE-|||0
+A 8 9|||Nn|||diseases|||REQUIRED|||-NONE-|||0
+A 3 5|||Rloc-|||diagnosed|||REQUIRED|||-NONE-|||1
+A 6 6|||ArtOrDet|||a|||REQUIRED|||-NONE-|||1
+A 12 13|||Vt|||supposed|||REQUIRED|||-NONE-|||1

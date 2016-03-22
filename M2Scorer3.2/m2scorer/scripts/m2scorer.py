@@ -141,7 +141,8 @@ p, r, f1 = levenshtein.batch_multi_pre_rec_f1(system_sentences, source_sentences
 end = time.time()
 h, rem = divmod(end-start, 3600)
 m, sec = divmod(rem, 60)
-print >> sys.stderr, " Time: %dhours %dmins %sseconds " %(h,m,sec)
+# print >> sys.stderr, " Time: %dhours %dmins %sseconds " %(h,m,sec)
+print " Time: %dhours %dmins %sseconds " %(h,m,sec)
 
 print "Precision   : %.4f" % p
 print "Recall      : %.4f" % r
