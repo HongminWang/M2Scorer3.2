@@ -1034,7 +1034,7 @@ def check_in_gold_range(e,gold_range):
 
     return False
 
-def transitive_arcs(V, E, G, dist, edits, golds_set, line_num, max_unchanged_words=2, very_verbose=False):
+def transitive_arcs(V, E, G, dist, edits, golds_set, max_unchanged_words=2, very_verbose=False):
     if very_verbose:
         print "-- Add transitive arcs --"
 
